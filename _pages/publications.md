@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 ### In Review
-* Riboldi, J., Noyelle, R., Agayar, E., Binder, H., **Federer, M.**, Hartmuth, K., Sprenger, M., Thurnherr, I., and Vishnupriya, S.: Storm Boris (2024) in the current and future climate: a dynamics-centered contextualization, and some lessons learnt](https://doi.org/10.5194/egusphere-2025-3599), EGUsphere, https://doi.org/10.5194/egusphere-2025-3599, 2025.
+* Riboldi, J., Noyelle, R., Agayar, E., Binder, H., **Federer, M.**, Hartmuth, K., Sprenger, M., Thurnherr, I., and Vishnupriya, S.: [Storm Boris (2024) in the current and future climate: a dynamics-centered contextualization, and some lessons learnt](https://doi.org/10.5194/egusphere-2025-3599), EGUsphere, https://doi.org/10.5194/egusphere-2025-3599, 2025.
 * **Federer, M**., Le May S., Sprenger M. and Papritz L.: [Collapses of Hemispheric Available Potential Energy](https://doi.org/10.22541/essoar.175915911.16090112/v1), ESS Open Archive, https://doi.org/10.22541/essoar.175915911.16090112/v1, 2025. 
 
 ### Journal Articles
