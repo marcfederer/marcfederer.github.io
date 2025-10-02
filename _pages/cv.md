@@ -17,20 +17,26 @@ Education
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Sep 2025 - Present: Postdoctoral Fellow
+  * Massachusetts Institute of Technology
+  * Supervisor: Prof. Talia Tamarin-Brodsky
+    
+* Apr - Aug 2025: Postdoctoral Researcher
+  * ETH Zurich
+  * Supervisor: Prof. Heini Wernli
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Nov 2021: Junior Meteorologist
+  * Axpo Group
+  * Duties included: Weather analysis for energy trading
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Nov 2020 - Mar 2021: Intern Energy Meteorology
+  * Axpo Group
+  * Duties included:
+    * Performing applied research projects with reanalysis data and numerical weather prediction model data \
+      to improve the extended-range forecasting capabilities of the meteorology desk 
+    * Prepare regular weather reports for the energy trading floor 
+    * Assess weather-related risks relevant for the energy markets
+  * Supervisor: Dr. Remo Beerli
   
 
   
