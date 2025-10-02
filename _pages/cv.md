@@ -29,7 +29,7 @@ Work experience
   * Axpo Group
   * Duties included: Weather analysis for energy trading
 
-* Nov 2020 - Mar 2021: Intern Energy Meteorology
+* Nov 2020 - Sep 2021: Intern Energy Meteorology
   * Axpo Group
   * Duties included:
     * Performing applied research projects with reanalysis data and numerical weather prediction model data \
