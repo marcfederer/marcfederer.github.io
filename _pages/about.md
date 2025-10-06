@@ -13,4 +13,7 @@ At MIT, I investigate the role of moisture in Rossby wave breaking and its influ
 
 I received my PhD in Atmospheric and Climate Science from ETH Zurich, where I worked with Lukas Papritz, Michael Sprenger, and [Heini Wernli](https://iac.ethz.ch/group/atmospheric-dynamics.html). My doctoral research examined the global atmospheric energy cycle and the role of individual weather systems in shaping it. In collaboration with the Karlsruhe Institute of Technology, I also studied the influence of the Gulf Stream on European blocking. My broader research interests include extreme weather, teleconnections, and subseasonal to seasonal predictability.
 
+News
+======
+* I will present my work on Collapses of Hemispheric APE at AOFD/AMS in January 2026 in Houston, USA. 
 
