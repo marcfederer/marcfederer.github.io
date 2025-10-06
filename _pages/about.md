@@ -15,5 +15,5 @@ I received my PhD in Atmospheric and Climate Science from ETH Zurich, where I wo
 
 News
 ======
-* I will present my work on Collapses of Hemispheric APE at AOFD/AMS in January 2026 in Houston, USA. 
+* I will present my work on Collapses of Hemispheric APE at AOFD (AMS) in January 2026 in Houston, USA. 
 
