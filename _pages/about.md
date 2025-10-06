@@ -15,5 +15,6 @@ I received my PhD in Atmospheric and Climate Science from ETH Zurich, where I wo
 
 News
 ======
-* I will present my work on Collapses of Hemispheric APE at AOFD (AMS) in January 2026 in Houston, USA. 
+* I will present my work on Collapses of Hemispheric APE at AOFD (AMS) in January 2026 in Houston, USA.
+* The [NAWDIC field campgain](https://www.nawdic.kit.edu) is coming up in Jan/Feb 2026. I will participate in flight planning for the campaign in Shannon, Ireland. 
 
