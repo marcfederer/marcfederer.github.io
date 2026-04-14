@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marcfederer.github.io/sitemap.xml
