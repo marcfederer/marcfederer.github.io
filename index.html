@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marc Federer | Atmospheric Dynamics and Climate Science</title>
+
+  <meta name="description" content="Marc Federer is a Postdoctoral Fellow at MIT studying atmospheric dynamics, storm tracks, moisture transport, and diabatic processes in climate variability and extreme weather.">
+  <meta property="og:title" content="Marc Federer | Atmospheric Dynamics and Climate Science">
+  <meta property="og:description" content="Research on storm tracks, moisture transport, diabatic heating, and climate variability.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0f1b2d;
+      --paper: #f8f9fb;
+      --accent: #1b4a6e;
+      --accent-hover: #24608f;
+      --muted: #5a6a7a;
+      --rule: #d6dfe7;
+      --warm: #9fb8cf;
+      --deep: #0a1520;
+      --max-w: 880px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 18px;
+      line-height: 1.75;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .splash {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 500px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--deep);
+    }
+
+    .splash-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      animation: slowZoom 35s ease-in-out infinite alternate;
+      filter: brightness(.65) contrast(1.1) saturate(1.1);
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+
+    .splash-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(10,21,32,.0) 0%,
+        rgba(10,21,32,.15) 40%,
+        rgba(10,21,32,.6) 100%
+      );
+    }
+
+    .splash-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      max-width: 800px;
+      padding: 0 36px;
+    }
+
+    .splash-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: .01em;
+      text-shadow: 0 2px 40px rgba(0,0,0,.4);
+    }
+
+    .splash-content h1 em {
+      font-style: italic;
+      font-weight: 500;
+      color: #b0d4f1;
+    }
+
+    .splash-name {
+      margin-top: 28px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    .splash-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.45);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .splash-scroll:hover { color: rgba(255,255,255,.8); }
+
+    .splash-scroll .chevron {
+      width: 18px; height: 18px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      animation: bounce 2.5s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%      { transform: rotate(45deg) translateY(5px); }
+    }
+
+    .splash-credit {
+      position: absolute;
+      bottom: 14px;
+      right: 20px;
+      z-index: 2;
+      font-size: .6rem;
+      color: rgba(255,255,255,.25);
+      letter-spacing: .03em;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,249,251,.92);
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    nav .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    nav .links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+
+    nav .links a:hover { color: var(--accent); }
+
+    .intro {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 80px 28px 60px;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .intro-photo {
+      width: 160px;
+      height: 192px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--rule);
+    }
+
+    .intro-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      letter-spacing: .01em;
+    }
+
+    .intro-text .subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .research-keywords {
+      margin-top: 16px;
+      font-size: .88rem;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      margin-top: 20px;
+    }
+
+    .quick-links a,
+    .cv-link {
+      display: inline-block;
+      font-size: .88rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background .25s, color .25s;
+    }
+
+    .quick-links a:hover,
+    .cv-link:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px 72px;
+    }
+
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 52px;
+    }
+
+    section > h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 28px;
+      letter-spacing: .02em;
+      color: var(--ink);
+    }
+
+    .theme-block {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .theme-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .theme-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 12px;
+      letter-spacing: .01em;
+    }
+
+    .theme-block > p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .project-label {
+      margin-top: 18px;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .project-list {
+      list-style: none;
+      margin-top: 18px;
+      padding-left: 18px;
+      border-left: 1.5px solid var(--rule);
+    }
+
+    .project-list li {
+      padding: 10px 0;
+      color: var(--ink);
+      font-size: .95rem;
+    }
+
+    .project-list li + li { border-top: 1px solid var(--rule); }
+
+    .theme-pubs {
+      list-style: none;
+      margin-top: 20px;
+      padding-left: 18px;
+      border-left: 1.5px solid var(--rule);
+    }
+
+    .theme-pubs li { padding: 12px 0; }
+    .theme-pubs li + li { border-top: 1px solid var(--rule); }
+
+    .tp-title { font-size: .95rem; line-height: 1.55; }
+    .tp-title a { color: var(--ink); text-decoration: none; transition: color .2s; }
+    .tp-title a:hover { color: var(--accent-hover); }
+    .tp-meta { font-size: .85rem; color: var(--muted); margin-top: 3px; }
+    .tp-meta strong { font-weight: 500; color: var(--ink); }
+    .tp-venue { font-size: .83rem; color: var(--accent); font-style: italic; }
+
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 6px 32px;
+      margin-top: 24px;
+      font-size: .95rem;
+    }
+
+    .cv-year { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .85rem; }
+    .cv-entry { padding-bottom: 16px; }
+    .cv-entry strong { font-weight: 500; }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 44px;
+      margin-top: 24px;
+      font-size: .95rem;
+    }
+
+    .contact-row a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      transition: border-color .25s;
+    }
+
+    .contact-row a:hover { border-color: var(--accent); }
+
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 36px 28px 52px;
+      border-top: 1px solid var(--rule);
+      font-size: .75rem;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: .03em;
+    }
+
+    @media (max-width: 640px) {
+      .intro { grid-template-columns: 1fr; padding-top: 56px; }
+      .intro-photo { width: 120px; height: 144px; }
+      .cv-grid { grid-template-columns: 1fr; }
+      nav .links { gap: 20px; }
+      nav .links a { font-size: .72rem; }
+      .splash-content h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+      .research-keywords { line-height: 1.7; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="splash">
+    <img class="splash-img" src="hero.jpg" alt="Extratropical cyclones over the North Pacific, GOES-18 GeoColor imagery" loading="eager">
+    <div class="splash-overlay"></div>
+    <div class="splash-content">
+      <h1>How storms shape climate</h1>
+      <div class="splash-name">Marc Federer</div>
+    </div>
+    <a href="#main" class="splash-scroll">
+      <span>Scroll</span>
+      <div class="chevron"></div>
+    </a>
+    <div class="splash-credit">GOES-18 ABI GeoColor · NOAA/NESDIS</div>
+  </div>
+
+  <nav id="main">
+    <div class="inner">
+      <div class="links">
+        <a href="#research">Research</a>
+        <a href="https://scholar.google.com/citations?user=KDFjZe8AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Publications</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="intro">
+    <img class="intro-photo" src="photo.jpg" alt="Marc Federer">
+    <div class="intro-text">
+      <h2>Marc Federer, PhD</h2>
+
+      <p class="subtitle">
+        I am a Postdoctoral Fellow in the Department of Earth, Atmospheric, and Planetary Sciences at MIT. I study how organized weather systems shape the large-scale circulation and its variability.
+      </p>
+
+      <p class="subtitle" style="margin-top:14px;">
+        My approach draws on theory, reanalysis data, and idealized modeling. I am particularly interested in how individual weather systems organize energy and moisture transport, how latent heating modifies Rossby wave dynamics, and what this means for climate projections and extreme weather prediction.
+      </p>
+
+      <p class="research-keywords">
+        Storm tracks · Diabatic heating · Extreme Weather · Predictability
+      </p>
+
+      <div class="quick-links">
+        <a href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        <a href="https://scholar.google.com/citations?user=KDFjZe8AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="research">
+    <hr class="section-rule">
+    <h2>Research</h2>
+
+    <div style="margin-top:12px;">
+
+      <div class="theme-block">
+        <h3>Moisture &amp; the Midlatitude Storm Tracks</h3>
+
+        <p>
+          The midlatitude storm tracks carry most of the atmosphere's poleward energy and moisture transport, and their behavior has direct consequences for regional weather and climate. A key open question is how moisture modifies this the storm tracks. Latent heating fuels cyclones, reshapes how Rossby waves propagate and break, and influences whether the flow organizes into persistent patterns like blocking or cyclone clustering. Despite its importance, this interplay between moisture and dynamics is a major source for uncertainy in numerical weather prediction and remains one of the largest sources of disagreement among climate models when projecting how storm tracks will shift in a warmer world.
+        </p>
+
+        <p style="margin-top:14px;">
+          At MIT, I work on isolating these moist dynamical pathways using a combination of theory, reanalysis diagnostics, and idealized model experiments.
+        </p>
+
+        <div class="project-label">Current projects</div>
+        <ul class="project-list">
+          <li>Diabatic heating and Rossby wave breaking</li>
+          <li>Moisture sources of latent heat release in midlatitude storm tracks</li>
+        </ul>
+      </div>
+
+      <div class="theme-block">
+        <h3>Atmospheric Energy Cycle</h3>
+
+        <p>
+          The general circulation is maintained by converting available potential energy into kinetic energy. Textbook descriptions treat this as a global, time-mean process, but in reality most of the conversion happens inside individual cyclones as they intensify. During my PhD, I developed a framework that makes this connection explicit: it makes use of a local measure of available potential energy, at the level of individual air parcels, and tracks how it evolves as cyclones form, intensify, and decay.
+        </p>
+
+        <p style="margin-top:14px;">
+          Applied to ERA5 reanalysis data, this perspective revealed that the hemispheric energy reservoir can collapse remarkably fast — losing up to ten percent of its total within days — driven by intense baroclinic conversion within a single storm track. These events have implications for how storm track activity fluctuates and how predictable it is on subseasonal timescales.
+        </p>
+
+        <ul class="theme-pubs">
+          <li>
+            <div class="tp-title">
+              <a href="https://doi.org/10.1029/2025GL119424" target="_blank" rel="noopener noreferrer">
+                Collapses of hemispheric available potential energy
+              </a>
+            </div>
+            <div class="tp-meta"><strong>M Federer</strong>, S Le May, M Sprenger, L Papritz</div>
+            <div class="tp-venue">Geophysical Research Letters, 2026</div>
+          </li>
+
+          <li>
+            <div class="tp-title">
+              <a href="https://doi.org/10.5194/wcd-6-211-2025" target="_blank" rel="noopener noreferrer">
+                Synoptic perspective on the conversion and maintenance of local available potential energy in extratropical cyclones
+              </a>
+            </div>
+            <div class="tp-meta"><strong>M Federer</strong>, L Papritz, M Sprenger, CM Grams</div>
+            <div class="tp-venue">Weather and Climate Dynamics, 2025</div>
+          </li>
+
+          <li>
+            <div class="tp-title">
+              <a href="https://doi.org/10.1175/JAS-D-23-0138.1" target="_blank" rel="noopener noreferrer">
+                On the local available potential energy perspective of baroclinic wave development
+              </a>
+            </div>
+            <div class="tp-meta"><strong>M Federer</strong>, L Papritz, M Sprenger, CM Grams, M Wenta</div>
+            <div class="tp-venue">Journal of the Atmospheric Sciences, 2024</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="theme-block">
+        <h3>Extreme Weather &amp; Predictability</h3>
+
+        <p>
+          Persistent blocking, cyclone clustering, and extreme precipitation are among the most impactful weather phenomena, yet they sit at the edge of what we can predict and what climate models can reliably simulate. Understanding why requires looking at the underlying dynamics — how circulation regimes emerge, how ocean–atmosphere coupling shapes them, and how these processes respond to warming.
+        </p>
+
+        <p style="margin-top:14px;">
+          I have contributed to work on European blocking dynamics and on contextualizing the devastating Storm Boris floods of September 2024 within current and future climate conditions. More broadly, I am interested in how process-level insight can sharpen both subseasonal prediction and the attribution of extreme events to climate change.
+        </p>
+
+        <ul class="theme-pubs">
+          <li>
+            <div class="tp-title">
+              <a href="https://doi.org/10.5194/wcd-7-65-2026" target="_blank" rel="noopener noreferrer">
+                Storm Boris (2024) in the current and future climate: a dynamics-centered contextualization
+              </a>
+            </div>
+            <div class="tp-meta">J Riboldi, R Noyelle, E Agayar, H Binder, <strong>M Federer</strong>, K Hartmuth, et al.</div>
+            <div class="tp-venue">Weather and Climate Dynamics, 2026</div>
+          </li>
+
+          <li>
+            <div class="tp-title">
+              <a href="https://doi.org/10.5194/wcd-5-181-2024" target="_blank" rel="noopener noreferrer">
+                Linking Gulf Stream air–sea interactions to the exceptional blocking episode in February 2019: a Lagrangian perspective
+              </a>
+            </div>
+            <div class="tp-meta">M Wenta, CM Grams, L Papritz, <strong>M Federer</strong></div>
+            <div class="tp-venue">Weather and Climate Dynamics, 2024</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="cv">
+    <hr class="section-rule">
+    <h2>CV</h2>
+
+    <p style="font-size:1rem; color:var(--muted); margin-bottom:24px;">
+      I work with Talia Tamarin-Brodsky at MIT, where my postdoc is funded through a Postdoc.Mobility grant from the Swiss National Science Foundation. Before that, I did my PhD at ETH Zurich with Lukas Papritz, Michael Sprenger, and Heini Wernli.
+    </p>
+
+    <div class="cv-grid">
+      <div class="cv-year">2025–present</div>
+      <div class="cv-entry">
+        <strong>Postdoctoral Fellow</strong>, MIT, Department of Earth, Atmospheric, and Planetary Sciences.
+        Advisor: Talia Tamarin-Brodsky. Funded by SNSF Postdoc.Mobility.
+      </div>
+
+      <div class="cv-year">2021–2025</div>
+      <div class="cv-entry">
+        <strong>PhD in Atmospheric and Climate Science</strong>, ETH Zurich.
+        Advisors: Lukas Papritz, Michael Sprenger, Heini Wernli.
+      </div>
+    </div>
+
+    <a class="cv-link" href="cv.pdf" target="_blank" rel="noopener noreferrer" style="margin-top:24px;">
+      Download full CV
+    </a>
+  </section>
+
+  <section id="contact">
+    <hr class="section-rule">
+    <h2>Contact</h2>
+
+    <div class="contact-row">
+      <a href="mailto:mfederer@mit.edu">mfederer@mit.edu</a>
+      <a href="https://scholar.google.com/citations?user=KDFjZe8AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+    </div>
+  </section>
+
+  <footer>&copy; Marc Federer</footer>
+
+</body>
+</html>
