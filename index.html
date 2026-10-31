@@ -144,6 +144,14 @@
     .over-hero .brand,
     .over-hero .links a { text-shadow: 0 1px 14px rgba(0,0,0,.35); }
 
+    /* name in the bar stays hidden while the large hero name is visible, then fades in */
+    .brand { transition: opacity .45s ease, transform .45s ease; }
+    .site-header:not(.show-brand) .brand {
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+    }
+
     /* ---------- Hero: image only ---------- */
 
     .splash {
@@ -186,8 +194,45 @@
       position: absolute;
       inset: 0;
       background:
+        linear-gradient(90deg,  rgba(10,21,32,.5)  0%, rgba(10,21,32,0) 55%),   /* keeps the name legible on the left */
         linear-gradient(180deg, rgba(10,21,32,.55) 0%, rgba(10,21,32,0) 22%),
         linear-gradient(0deg,   rgba(10,21,32,.5)  0%, rgba(10,21,32,0) 28%);
+    }
+
+    /* large name, middle left, aligned with the header's left edge */
+    .splash-title {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: max(36px, calc((100vw - 1200px) / 2 + 36px));
+      right: 36px;
+      transform: translateY(-50%);
+      color: #fff;
+      text-shadow: 0 2px 30px rgba(0,0,0,.35);
+      will-change: opacity;
+    }
+
+    .splash-title h1 {
+      font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: -.025em;
+    }
+
+    .splash-field {
+      margin-top: 18px;
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      font-weight: 300;
+      color: rgba(255,255,255,.92);
+    }
+
+    .splash-role {
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: .76rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
     }
 
     /* scroll cue: label + thin line with a light pulse travelling down it */
@@ -539,6 +584,9 @@
       .links a { font-size: .68rem; }
       .site-header:not(.over-hero) .brand-role { display: none; }
       .site-header:not(.over-hero) .inner { gap: 4px; padding: 10px 18px; }
+      .site-header:not(.show-brand) .brand { display: none; }   /* only the menu over the hero on phones */
+
+      .splash-title { left: 18px; right: 18px; }
 
       .splash-scroll { bottom: 64px; }
       .splash-caption { left: 16px; right: 16px; bottom: 14px; text-align: center; }
@@ -578,6 +626,11 @@
       <span>Scroll</span>
       <span class="scroll-line"></span>
     </a>
+    <div class="splash-title">
+      <h1>Marc Federer</h1>
+      <p class="splash-field">Atmospheric dynamics and climate</p>
+      <p class="splash-role">Postdoctoral Fellow · MIT EAPS</p>
+    </div>
     <div class="splash-caption">
       Extratropical cyclones over the North Pacific
       <span class="credit">GOES-18 ABI GeoColor · NOAA/NESDIS</span>
@@ -592,6 +645,7 @@
       var cue = document.querySelector('.splash-scroll');
       var media = document.querySelector('.splash-media');
       var caption = document.querySelector('.splash-caption');
+      var title = document.querySelector('.splash-title');
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!header || !hero) return;
 
@@ -611,6 +665,15 @@
             'translate3d(0,' + (y * 0.4).toFixed(1) + 'px,0) scale(' + (1 + 0.05 * p).toFixed(4) + ')';
         }
         if (caption) caption.style.opacity = (1 - Math.min(p * 2.5, 1)).toFixed(3);
+
+        // Large name fades as it moves up; the small name in the bar appears once it has gone under the bar.
+        if (title) {
+          title.style.opacity = (1 - Math.min(p * 1.8, 1)).toFixed(3);
+          var titleBottom = title.offsetTop + title.offsetHeight / 2;   // centre line of the name block (it is translated -50%)
+          header.classList.toggle('show-brand', y > titleBottom - header.offsetHeight - 40);
+        } else {
+          header.classList.add('show-brand');
+        }
       }
       function onScroll() {
         if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
@@ -622,8 +685,6 @@
   </script>
 
   <main>
-    <h1 class="sr-only">Marc Federer — Atmospheric Dynamics and Climate Science</h1>
-
     <div class="intro" id="about">
       <img class="intro-photo" src="photo.jpg" alt="Marc Federer">
       <div class="intro-text">
