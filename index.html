@@ -156,6 +156,13 @@
       background: radial-gradient(ellipse at 35% 25%, #1d3a55 0%, var(--deep) 70%);
     }
 
+    /* wrapper that moves and fades with scrolling (the image inside keeps its slow zoom) */
+    .splash-media {
+      position: absolute;
+      inset: 0;
+      will-change: transform, opacity;
+    }
+
     .splash-img {
       position: absolute;
       inset: 0;
@@ -183,41 +190,60 @@
         linear-gradient(0deg,   rgba(10,21,32,.5)  0%, rgba(10,21,32,0) 28%);
     }
 
+    /* scroll cue: label + thin line with a light pulse travelling down it */
     .splash-scroll {
       position: absolute;
-      bottom: 36px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,.78);
+      gap: 12px;
+      padding: 10px 24px;                 /* larger click/tap area */
+      color: rgba(255,255,255,.9);
       font-family: var(--mono);
-      font-size: .68rem;
-      letter-spacing: .14em;
+      font-size: .72rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       text-decoration: none;
-      transition: color .3s;
+      text-shadow: 0 1px 12px rgba(0,0,0,.4);
+      transition: color .3s, opacity .5s ease;
     }
 
     .splash-scroll:hover { color: #fff; }
 
-    .splash-scroll .chevron {
-      width: 14px; height: 14px;
-      border-right: 1.5px solid currentColor;
-      border-bottom: 1.5px solid currentColor;
-      transform: rotate(45deg);
+    .splash-scroll.is-hidden { opacity: 0; pointer-events: none; }
+
+    .scroll-line {
+      position: relative;
+      width: 1px;
+      height: 56px;
+      overflow: hidden;
+      background: rgba(255,255,255,.35);
     }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 45%;
+      background: #fff;
+    }
+
+    .splash-scroll:hover .scroll-line { background: rgba(255,255,255,.6); }
 
     @media (prefers-reduced-motion: no-preference) {
-      .splash-scroll .chevron { animation: bounce 2.5s ease infinite; }
+      .scroll-line::after { animation: scrollPulse 2.4s cubic-bezier(.65,0,.35,1) infinite; }
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); }
-      50%      { transform: rotate(45deg) translateY(5px); }
+    @keyframes scrollPulse {
+      0%   { transform: translateY(-100%); }
+      70%  { transform: translateY(225%); }
+      100% { transform: translateY(225%); }
     }
 
     .splash-caption {
@@ -544,11 +570,13 @@
   </header>
 
   <div class="splash">
-    <img class="splash-img" src="hero.jpg" alt="Extratropical cyclones over the North Pacific, GOES-18 GeoColor imagery" loading="eager">
+    <div class="splash-media">
+      <img class="splash-img" src="hero.jpg" alt="Extratropical cyclones over the North Pacific, GOES-18 GeoColor imagery" loading="eager">
+    </div>
     <div class="splash-overlay"></div>
     <a href="#about" class="splash-scroll" aria-label="Scroll to profile">
       <span>Scroll</span>
-      <div class="chevron"></div>
+      <span class="scroll-line"></span>
     </a>
     <div class="splash-caption">
       Extratropical cyclones over the North Pacific
@@ -561,13 +589,35 @@
     (function () {
       var header = document.querySelector('.site-header');
       var hero = document.querySelector('.splash');
+      var cue = document.querySelector('.splash-scroll');
+      var media = document.querySelector('.splash-media');
+      var caption = document.querySelector('.splash-caption');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!header || !hero) return;
+
+      var ticking = false;
       function update() {
-        header.classList.toggle('over-hero', window.scrollY < hero.offsetHeight - header.offsetHeight);
+        ticking = false;
+        var y = window.scrollY;
+        var h = hero.offsetHeight;
+        header.classList.toggle('over-hero', y < h - header.offsetHeight);
+        if (cue) cue.classList.toggle('is-hidden', y > 40);   // cue fades once the visitor starts scrolling
+
+        // As the hero scrolls away, the image fades and drifts more slowly than the page (parallax).
+        var p = Math.min(Math.max(y / h, 0), 1);
+        if (media) {
+          media.style.opacity = (1 - 0.8 * p).toFixed(3);
+          media.style.transform = reduce ? '' :
+            'translate3d(0,' + (y * 0.4).toFixed(1) + 'px,0) scale(' + (1 + 0.05 * p).toFixed(4) + ')';
+        }
+        if (caption) caption.style.opacity = (1 - Math.min(p * 2.5, 1)).toFixed(3);
+      }
+      function onScroll() {
+        if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
       }
       update();
-      window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
     })();
   </script>
 
