@@ -228,13 +228,10 @@
     }
 
     .splash-role {
-      margin-top: 10px;
-      font-family: var(--mono);
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.95);
+      margin-top: 6px;
+      font-size: clamp(.95rem, 1.3vw, 1.08rem);
+      font-weight: 400;
+      color: rgba(255,255,255,.9);
     }
 
     /* scroll cue: label + thin line with a light pulse travelling down it */
@@ -316,7 +313,7 @@
     /* ---------- Intro ---------- */
 
     .intro {
-      max-width: 960px;
+      max-width: var(--max-w);   /* same width as the sections, so "About" lines up with "Research" */
       margin: 0 auto;
       padding: 96px 28px 80px;
       display: grid;
@@ -324,6 +321,14 @@
       gap: 44px;
       align-items: start;
       scroll-margin-top: var(--header-h);
+    }
+
+    .intro-title {
+      grid-column: 1 / -1;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.2;
     }
 
     .intro-photo {
@@ -595,6 +600,7 @@
 
       .intro { grid-template-columns: 1fr; padding: 56px 16px 48px; gap: 28px; }
       .intro-photo { width: 168px; height: 210px; }
+      .intro-title { font-size: 1.6rem; }
       section { padding: 0 16px 64px; }
       section > h2 { font-size: 1.6rem; margin-bottom: 36px; }
       .theme-block { padding-bottom: 56px; margin-bottom: 56px; }
@@ -688,14 +694,19 @@
 
   <main>
     <div class="intro" id="about">
+      <h2 class="intro-title">About</h2>
       <img class="intro-photo" src="photo.jpg" alt="Marc Federer">
       <div class="intro-text">
         <p class="subtitle">
-          I am a Postdoctoral Fellow in the Department of Earth, Atmospheric, and Planetary Sciences at MIT. I study how weather systems such as midlatitude cyclones shape the large-scale circulation of the atmosphere, including the jet stream and the storm tracks, and how this may change in a warmer climate.
+          Much of the weather in the midlatitudes, including heavy rain, windstorms and prolonged cold or warm spells, is caused by large weather systems such as cyclones. Together, these systems also carry heat and moisture towards the poles and shape the jet stream. How they will respond to a warmer climate remains uncertain, which limits our ability to project regional climate change.
         </p>
 
         <p class="subtitle">
-          My work draws on reanalysis data and idealised modelling. I am particularly interested in how coherent weather systems organise energy and moisture transport, how latent heating modifies Rossby wave dynamics, and what this means for climate projections and the prediction of extreme weather.
+          I study the physics of these weather systems and how they shape the circulation of the atmosphere as a whole. A focus of my research is the heat released when water vapour condenses in rising air, and how it strengthens storms and alters the jet stream. I use observation-based datasets and model simulations to identify the processes involved and how they may change with warming.
+        </p>
+
+        <p class="subtitle">
+          I am a Postdoctoral Fellow at MIT, working with Talia Tamarin-Brodsky. I received my PhD from ETH Zurich. Previously, I worked in the energy sector on weather-related risk.
         </p>
 
         <p class="research-keywords mono">
