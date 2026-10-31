@@ -194,7 +194,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg,  rgba(10,21,32,.5)  0%, rgba(10,21,32,0) 55%),   /* keeps the name legible on the left */
+        linear-gradient(90deg,  rgba(10,21,32,.62) 0%, rgba(10,21,32,.25) 35%, rgba(10,21,32,0) 62%),   /* keeps the name legible on the left */
         linear-gradient(180deg, rgba(10,21,32,.55) 0%, rgba(10,21,32,0) 22%),
         linear-gradient(0deg,   rgba(10,21,32,.5)  0%, rgba(10,21,32,0) 28%);
     }
@@ -208,7 +208,8 @@
       right: 36px;
       transform: translateY(-50%);
       color: #fff;
-      text-shadow: 0 2px 30px rgba(0,0,0,.35);
+      /* tight shadow sharpens the letter edges, wide one lifts the text off bright cloud */
+      text-shadow: 0 1px 2px rgba(0,0,0,.55), 0 2px 28px rgba(0,0,0,.45);
       will-change: opacity;
     }
 
@@ -221,18 +222,19 @@
 
     .splash-field {
       margin-top: 18px;
-      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-      font-weight: 300;
-      color: rgba(255,255,255,.92);
+      font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+      font-weight: 400;
+      color: #fff;
     }
 
     .splash-role {
       margin-top: 10px;
       font-family: var(--mono);
-      font-size: .76rem;
-      letter-spacing: .14em;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.78);
+      color: rgba(255,255,255,.95);
     }
 
     /* scroll cue: label + thin line with a light pulse travelling down it */
@@ -669,7 +671,7 @@
         // Large name fades as it moves up; the small name in the bar appears once it has gone under the bar.
         if (title) {
           title.style.opacity = (1 - Math.min(p * 1.8, 1)).toFixed(3);
-          var titleBottom = title.offsetTop + title.offsetHeight / 2;   // centre line of the name block (it is translated -50%)
+          var titleBottom = title.offsetTop + title.offsetHeight / 2;   // bottom edge of the name block (top: 50% plus half its height, since it is shifted up by -50%)
           header.classList.toggle('show-brand', y > titleBottom - header.offsetHeight - 40);
         } else {
           header.classList.add('show-brand');
